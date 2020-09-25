@@ -1,17 +1,20 @@
 import React from "react";
+import Axios from "axios";
 // import PropTypes from "prop-types";
 
 
 class ClassApp extends React.Component {
 
-    constructor(p) {
-        super(p);
-        console.log("Hello, world!");
-    }
+    // constructor(p) {
+    //     super(p);
+    //     console.log("Hello, world!");
+    // }
 
     // 바뀌는 데이터를 담는 그릇, State
-    state = {
-        count: 0
+    state = {   // elements can be defined in setState
+        count: 0,
+        isLoading: true,
+        movies: []
     };
 
     // React re-render page for every setState execution
@@ -37,6 +40,13 @@ class ClassApp extends React.Component {
 
     componentDidMount() {
         console.log("rendered");
+        this.getMovies();
+    }
+
+    getMovies = async () => {
+        const res = await Axios.get("https://yts-proxy.now.sh/list_movies.json");
+        
+        this.setState(({isLoading:false,movies:res.data.data.movies}));
     }
 
     componentDidUpdate() {
@@ -51,14 +61,21 @@ class ClassApp extends React.Component {
     render() {
         console.log("rendering");
         return <div>
-            <h1>I'm a class component</h1>
             <div>
-                <p>The number is : {this.state.count}</p>
-                <button onClick={this.plus}>+</button>
-                <button onClick={this.minus}>-</button>
+                <h1>Movie List</h1>
+            </div>
+            <div>
+                {this.state.isLoading ? "Loading..." : this.state.movies.map(e=><MovieElem key={e.id} title={e.title_english} image={e.medium_cover_image} rating={e.rating} genre={e.genres}/>)}
             </div>
         </div>
     }
+}
+
+function MovieElem(props) {
+    return <div className="movieElem">
+        <p>Title : {props.title} / Genre : {(props.genre).join(", ")}</p>
+        <img src={props.image} alt={props.title}></img>
+    </div>
 }
 
 export default ClassApp
