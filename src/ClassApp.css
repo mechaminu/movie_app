@@ -1,0 +1,25 @@
+html, body, #root {
+    height: 100%;
+    margin:0;
+    padding:0;
+    /* background-color: #002442; */
+}
+
+.container {
+    width : 100%;
+    height : 100%;
+    padding : 15px 0px;
+}
+
+.loader {
+    display: flex;
+    padding: 25% 50%;
+    color:white;
+}
+
+.movies {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}

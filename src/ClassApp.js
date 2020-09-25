@@ -1,6 +1,7 @@
 import React from "react";
 import Axios from "axios";
-// import PropTypes from "prop-types";
+import MovieElem from "./MovieElem";
+import './ClassApp.css';
 
 
 class ClassApp extends React.Component {
@@ -17,14 +18,6 @@ class ClassApp extends React.Component {
         movies: []
     };
 
-    // React re-render page for every setState execution
-    plus = () => {
-        this.setState(c => ({ count: c.count + 1 }));
-    };
-
-    minus = () => {
-        this.setState(c => ({ count: c.count - 1 }));
-    };
 
     /** Component Lifecycle Call stack
      *  - mounting
@@ -44,10 +37,11 @@ class ClassApp extends React.Component {
     }
 
     getMovies = async () => {
-        const { data: {data: { movies }}} = await Axios.get("https://yts-proxy.now.sh/list_movies.json");
+        const { data: {data: { movies }}} = await Axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
         this.setState(({isLoading:false,movies}));
     }
 
+    // React re-render page for every setState execution
     componentDidUpdate() {
         console.log("updated");
     }
@@ -60,21 +54,26 @@ class ClassApp extends React.Component {
     render() {
         console.log("rendering");
         return <div>
-            <div>
-                <h1>Movie List</h1>
-            </div>
-            <div>
-                {this.state.isLoading ? "Loading..." : this.state.movies.map(e=><MovieElem key={e.id} title={e.title_english} image={e.medium_cover_image} rating={e.rating} genre={e.genres}/>)}
-            </div>
+            <section className="container">
+                { this.state.isLoading
+                    ? <div className="loader">Loading...</div>
+                    : <div className="movies">
+                        {this.state.movies.map(e => (
+                            <MovieElem 
+                                key={e.id}
+                                title={e.title_english}
+                                year={e.year}
+                                image={e.medium_cover_image}
+                                rating={e.rating}
+                                genre={e.genres}
+                                summary={e.summary}
+                            />
+                        ))}
+                    </div>
+                }
+            </section>
         </div>
     }
-}
-
-function MovieElem(props) {
-    return <div className="movieElem">
-        <p>Title : {props.title} / Genre : {(props.genre).join(", ")}</p>
-        <img src={props.image} alt={props.title}></img>
-    </div>
 }
 
 export default ClassApp

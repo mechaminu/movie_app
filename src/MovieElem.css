@@ -1,0 +1,43 @@
+
+
+.movieElem{
+    background-color:#eceff3;
+    margin: 10px 0px;
+    padding: 15px;
+    width: 25%;
+    box-shadow: 0 4px 12px 0px rgba(0,0,0,0.25);
+}
+
+.movieElem_title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.movieElem_year {
+    color : rgb(92, 92, 92);
+    font-size: 0.7em;
+}
+
+.movieElem_summary {
+    margin: 10px 0px 10px 0px;
+    font-size: 1em;
+}
+.movieElem_genre ul{
+    margin: 5px;
+    padding: 0;
+    list-style : none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movieElem_genre li{
+    margin : 0px 10px 0 0;
+    color : rgb(92, 92, 92);
+}
+
+.movieElem_image {
+    float: left;
+    max-width: 50%;
+    margin-right: 15px;
+    box-shadow: 0 8px 8px -6px rgba(0,0,0,0.25);;
+}
