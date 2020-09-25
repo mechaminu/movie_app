@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+function Movie({name}) {
+  console.log({name});
+  return <p>i like {name}</p>
+}
+
+// Component
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h>Hello world!!!!</h>
+      <p>이 안에는 HTML이 작성된다</p>
+      <p>컴포넌트는 HTML을 반환하는 함수!</p>
+      {/* 
+        This is how to comment
+        
+        For this 'Movie' component, we created property 'name' and value 'tenet'
+        
+        this is how information is transferred into components, like how its done in HTML elements
+
+
+      */}
+
+      <Movie name="tenet" />
+
+      <Movie name="about time" />
+
+      <Movie name="parasite" />
+
+      <Movie name="django" />
+
     </div>
   );
 }
