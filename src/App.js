@@ -17,11 +17,15 @@ function Movie({ name, image, rating }) {
 }
 
 // Argument type validation
+
 Movie.propTypes = {
+  // Movie.myTypes = {  // PropTypes element만 제대로 갖추기만 하면 상위 객체의 이름은 상관 없이 OK
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired // error!
-  // rating:PropTypes.number.isRequired
+  
+  rating:PropTypes.number.isRequired
+  // rating: PropTypes.string.isRequired // error!
+  // rating:PropTypes.number // 
 };
 
 
@@ -73,6 +77,7 @@ function App() {
         <h1>크리스토퍼 놀란 걸작선</h1>
         {movieList.map((e, idx) => <Movie key={idx} name={e.name} image={e.image} rating={e.rating} />)}
       </div>
+      
     </div>
   );
 
