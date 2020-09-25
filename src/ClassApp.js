@@ -44,9 +44,8 @@ class ClassApp extends React.Component {
     }
 
     getMovies = async () => {
-        const res = await Axios.get("https://yts-proxy.now.sh/list_movies.json");
-        
-        this.setState(({isLoading:false,movies:res.data.data.movies}));
+        const { data: {data: { movies }}} = await Axios.get("https://yts-proxy.now.sh/list_movies.json");
+        this.setState(({isLoading:false,movies}));
     }
 
     componentDidUpdate() {
