@@ -18,7 +18,22 @@ class Home extends React.Component {
     state = {   // elements can be defined in setState
         count: 2,
         isLoading: true,
-        movies: []
+        movies: [],
+        scrollFunction: ()=>{
+            let curPos = document.documentElement.scrollTop;
+            let maxPos = document.getElementsByClassName("movies")[0].scrollHeight;
+            let localHeight = window.innerHeight;
+
+            if(curPos + localHeight >= maxPos) {
+                if(!this.state.isLoading) {
+                    console.log("스크롤이 끝에 도달하였으므로 영화목록 추가 실시");
+                    
+                    this.getMovies(this.state.count).then(()=>{
+                        this.setState(c=>({count:c.count+1}));
+                    })
+                }
+            }
+        }
     };
 
     /** Component Lifecycle Call stack
@@ -36,22 +51,7 @@ class Home extends React.Component {
         console.log("rendered");
         this.getMovies(1);
 
-        window.addEventListener("scroll",()=>{
-            let curPos = document.documentElement.scrollTop;
-            let maxPos = document.getElementsByClassName("movies")[0].scrollHeight;
-            let localHeight = window.innerHeight;
-
-            if(curPos + localHeight >= maxPos) {
-                if(!this.state.isLoading) {
-                    console.log("스크롤이 끝에 도달하였으므로 영화목록 추가 실시");
-                    
-                    this.getMovies(this.state.count).then(()=>{
-                        this.setState(c=>({count:c.count+1}));
-                    })
-                    
-                }
-            }
-        })
+        window.addEventListener("scroll",this.state.scrollFunction)
     }
 
     getMovies = async (page) => {
@@ -75,6 +75,7 @@ class Home extends React.Component {
 
     componentWillUnmount() {
         console.log("Goodbye, cruel world...!")
+        window.removeEventListener("scroll",this.state.scrollFunction)
     }
 
     // React는 자동적으로 Class component의 render 메소드를 실행한다!
@@ -102,6 +103,7 @@ class Home extends React.Component {
                         rating={e.rating}
                         genre={e.genres}
                         summary={e.summary}
+                        data={e}
                     />
                 ))}
             </div>

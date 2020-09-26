@@ -1,9 +1,9 @@
 .movie{
     position: relative;
     background-color:#eceff3;
-    margin: 50px 0px;
-    width: 500px;
-    height: 200px;
+    margin-bottom: 20px;
+    width: 350px;
+    height: 250px;
     box-shadow: 0 4px 12px 0px rgba(0,0,0,0.25);
 }
 
@@ -35,7 +35,7 @@
     padding: 0;
     list-style : none;
     display: flex;
-    overflow:hidden;
+    flex-wrap: wrap;
     font-size: 0.9em;
     color: rgb(92, 92, 92);
 }
@@ -48,7 +48,7 @@
 .movie_image {
     position: absolute;
     width: 20%;
-    top: -20%;
+    top: 5%;
     margin: 0px 5%;
     box-shadow: 0 8px 8px -6px rgba(0,0,0,0.5);;
 }

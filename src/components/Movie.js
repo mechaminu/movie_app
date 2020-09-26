@@ -4,15 +4,18 @@ import PropTypes from "prop-types";
 import "./Movie.css"
 
 function Movie(props) {
-    let {title, year, image, genre, summary, rating} = props
+    let {title, year, image, genre, summary, rating, data} = props
     return <Link to={{
         pathname:"/movie_detail",
         state: {
-            movie: props
+            movie: data
         }
     }}>
         <div className="movie">
-            <img className="movie_image" src={image} alt={title} title={title}></img>
+            <div className="movie_imageWrapper">
+                <img className="movie_image" src={image} alt={title} title={title}></img>
+            </div>
+            
             <div className="movie_info">
                 <div className="movie_title">{title}</div>
                 <div className="movie_year">{year}</div>
