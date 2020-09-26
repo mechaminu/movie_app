@@ -1,3 +1,3 @@
-## Movie App
+## Simple infinite list of movies
 
-Simple movie rating app with ReactJS
+https://minuuoo97.github.io/movie_app
