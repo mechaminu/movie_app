@@ -1,3 +1,3 @@
 ## Simple infinite list of movies
 
-https://minuuoo97.github.io/movie_app
+https://mechaminu.github.io/movie_app/
